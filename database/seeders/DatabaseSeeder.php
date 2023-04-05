@@ -15,11 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
-        $this->call(PermissionTableSeeder::class);
-        $this->call(UserSeeder::class);
-        $this->call(RoleSeeder::class);
-
          \App\Models\Estudiante::factory(15)->create();
          \App\Models\Materia::factory()->times(8)->create()->each( function($materia){
             $materia->estudiantes()->sync(
