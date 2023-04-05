@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('materias', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            // $table->unsignedBigInteger('estudiante_id');
+            // $table->foreign('estudiante_id')->references('id')->on('estudiantes')->onDelete('cascade');
             $table->timestamps();
         });
     }

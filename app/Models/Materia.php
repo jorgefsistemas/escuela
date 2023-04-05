@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Estudiante;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Materia extends Model
 {
@@ -17,7 +18,9 @@ class Materia extends Model
      */
     protected $fillable = [
         'name',
-
-
     ];
+    //Relationships Many to Many
+    public function estudiantes(){
+        return $this->belongsToMany(Estudiante::class, 'estudiante_materia');
+    }
 }

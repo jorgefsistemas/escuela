@@ -15,6 +15,7 @@
                             <th>ID</th>
                             <th>Nombre</th>
                             <th>Email</th>
+                            <th>Materias</th>
                             <th>Acciones</th>
                             <th> <a href="{{ URL::route('addstudent') }}" class="bg-blue-500  text-white font-bold py-2 px-4 rounded"> Agregar </a></th>
                         </tr>
@@ -31,6 +32,16 @@
                             </td>
                            <td>
                             {{$student->email}}
+                            </td>
+                           <td>
+                            <ul>
+                            @foreach ($student->materias as $materias )
+                            <li>
+                                 {{$materias['name']}}
+                                </li>
+                            @endforeach
+                            </ul>
+
                             </td>
                            <td>
                             <a href="{{ URL::route('editstudent',$student->id ) }}" class="bg-blue-500  text-white font-bold py-2 px-4 rounded"> Editar </a>

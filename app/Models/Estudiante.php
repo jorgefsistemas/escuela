@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Materia;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Estudiante extends Model
 {
@@ -19,6 +20,10 @@ class Estudiante extends Model
         'email',
 
     ];
+    //Relationships Many to Many
+public function materias(){
+    return $this->belongsToMany(Materia::class, 'estudiante_materia');
+}
 
 
 }

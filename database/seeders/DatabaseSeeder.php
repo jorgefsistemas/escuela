@@ -1,7 +1,8 @@
 <?php
-
 namespace Database\Seeders;
 
+use App\Models\Estudiante;
+use App\Models\Materia;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,7 +13,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+         \App\Models\Estudiante::factory(15)->create();
+         \App\Models\Materia::factory()->times(8)->create()->each( function($materia){
+            $materia->estudiantes()->sync(
+                //Cada curso es tomado por 3 estudiantes
+                \App\Models\Estudiante::all()->random(3)
+            );
+    });
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
