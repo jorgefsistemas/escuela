@@ -1,13 +1,16 @@
 <?php
 
+
+use App\Models\Materia;
 use App\Models\Estudiante;
 use App\Http\Livewire\Student;
 use App\Http\Livewire\Subjects;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Controllers\EstudianteController;
 use App\Http\Controllers\MateriaController;
-use App\Models\Materia;
+use App\Http\Controllers\EstudianteController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +32,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+    Route::resource('users', UserController::class);
+    Route::resource('roles', RoleController::class)->middleware('auth:sanctum');
+    Route::resource('permissions', PermissionController::class);
+
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
