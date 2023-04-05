@@ -6,7 +6,8 @@ use App\Http\Livewire\Subjects;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\EstudianteController;
-
+use App\Http\Controllers\MateriaController;
+use App\Models\Materia;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,25 @@ Route::middleware([
 
         // return view('editstudent', ['studiante'=>$datos ] );
     })->name('deletestudent');
+    // rutas para materias
+
+    Route::get('/addsubject', function () {
+        return view('addsubject');
+    })->name('addsubject');
+    Route::post('/addsubject', [MateriaController::class, 'store'] );
+    Route::get('/editsubject/{id}', function ($id) {
+        $datos= Materia::find($id);
+        return view('editsubject', ['materia'=>$datos ] );
+    })->name('editsubject');
+     Route::get('/editsubject2/{id}', [MateriaController::class, 'update'] )->name('editsubject2');
+     Route::get('/deletesubject/{id}', function ($id) {
+        $datos= Materia::find($id);
+        $datos->delete();
+        return Redirect::to('subjects');
+    })->name('deletesubject');
+
+
+
 
 
 });

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Materia;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreMateriaRequest;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\UpdateMateriaRequest;
 
 class MateriaController extends Controller
@@ -27,9 +29,17 @@ class MateriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreMateriaRequest $request)
+    public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+        ]);
         //
+        // dd($request['name']);
+        $estudiante = new Materia();
+        $estudiante->name       = $request['name'];
+        $estudiante->save();
+         return Redirect::to('subjects');
     }
 
     /**
@@ -51,9 +61,19 @@ class MateriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMateriaRequest $request, Materia $materia)
+    public function update(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required',
+        ]);
+        //
+        // dd($request['name']);
+        $estudiante =  Materia::find($request['id']);
+        $estudiante->name       = $request['name'];
+        $estudiante->save();
+         // redirect
+         return Redirect::to('subjects');
     }
 
     /**
