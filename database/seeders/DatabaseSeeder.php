@@ -1,10 +1,11 @@
 <?php
 namespace Database\Seeders;
 
-use App\Models\Estudiante;
 use App\Models\Materia;
+use App\Models\Estudiante;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\RoleSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(UserSeeder::class);
+        $this->call(RoleSeeder::class);
+
          \App\Models\Estudiante::factory(15)->create();
          \App\Models\Materia::factory()->times(8)->create()->each( function($materia){
             $materia->estudiantes()->sync(
