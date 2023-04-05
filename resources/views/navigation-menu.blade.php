@@ -26,21 +26,9 @@
                         Materias
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
-                        Usuarios
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{route('roles.index') }}" :active="request()->routeIs('roles.index')">
-                        Roles
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{route('permissions.index') }}" :active="request()->routeIs('permissions.index')">
-                        Permisos
-                    </x-nav-link>
-                </div>
+
+
+
             </div>
             {{-- manu de usuario --}}
 
