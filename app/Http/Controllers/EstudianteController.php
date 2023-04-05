@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\Console\Input\Input;
 use App\Http\Requests\StoreEstudianteRequest;
 use App\Http\Requests\UpdateEstudianteRequest;
 
@@ -22,14 +26,26 @@ class EstudianteController extends Controller
     public function create()
     {
         //
+        // dd("create");
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEstudianteRequest $request)
+    public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+        ]);
         //
+        // dd($request['name']);
+        $estudiante = new Estudiante;
+        $estudiante->name       = $request['name'];
+        $estudiante->email      = $request['email'];
+        $estudiante->save();
+         return Redirect::to('students');
+
     }
 
     /**
@@ -51,9 +67,23 @@ class EstudianteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEstudianteRequest $request, Estudiante $estudiante)
+    public function update(Request $request, $id)
     {
         //
+        // dd( $request->all());
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+        ]);
+        //
+        // dd($request['name']);
+        $estudiante =  Estudiante::find($request['id']);
+        $estudiante->name       = $request['name'];
+        $estudiante->email      = $request['email'];
+        $estudiante->save();
+         // redirect
+         return Redirect::to('students');
     }
 
     /**

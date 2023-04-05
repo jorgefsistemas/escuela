@@ -1,7 +1,7 @@
 
 
 <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
-
+{{$students}}jorge
     <table class="table table-sm">
         <thead>
             <tr>
@@ -13,11 +13,11 @@
         <tbody>
             @foreach($students as $student)
             <tr>
-                @foreach($student as $key)
+                {{-- @foreach($student as $key) --}}
                <td>
-                       {{$key}}
+                       {{$student['name']}}
                 </td>
-                   @endforeach
+                   {{-- @endforeach --}}
                   </tr>
             @endforeach
         </tbody>
